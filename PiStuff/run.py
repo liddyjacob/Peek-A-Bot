@@ -29,10 +29,7 @@ try:
         rmap.create_wall(newpos, newangle, dist)
 
         #Determine next controls:
-        aibot.update(rmap, frame)
-
-
-
+        aibot.update(rmap, dist, frame)
 
 except KeyboardInterrupt:
     print("Done?")

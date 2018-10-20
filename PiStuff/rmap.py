@@ -7,13 +7,16 @@ class RMap:
         self.create_map()
 
     def create_map(self):
-        for i in range(int(-self.length/2), int(self.length/2 + 1)):
-            for j in range(int(-self.height/2), int(self.height/2)):
+        ival = int(-self.length * self.grain / 2)
+        jval = int(-self.height * self.grain / 2)
+        for i in range(-ival, ival + 1):
+            for j in range(-jval, jval):
                 print i, j
 
     def create_wall(self, pos, angle, dist):
-        print pos
-        print angle
-        print dist
+        pass
+        #print pos
+        #print angle
+        #print dist
 
 #def dist_from_line

@@ -2,4 +2,5 @@
 from picamera import PiCamera
 
 def getcamera():
-    print "Getting camera frame"
+    pass
+    #print "Getting camera frame"
