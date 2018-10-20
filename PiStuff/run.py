@@ -17,7 +17,8 @@ try:
     while True:
         sleep(.03)
 
-        #Calculate new position:
+        #Calculate new position
+
         newpos = find_new_pos(aibot)
         newangle = find_new_angle(aibot)
 
