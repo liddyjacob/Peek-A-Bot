@@ -1,6 +1,17 @@
 int incomingByte = 0;   // for incoming serial data
 char data = 0;            //Variable for storing received data
 
+const byte numChars = 32;
+char receivedChars[numChars];
+char tempChars[numChars];        // temporary array for use when parsing
+
+      // variables to hold the parsed data
+char wheelSide = '0';
+int velocity = 0;
+float floatFromPC = 0.0;
+
+boolean newData = false;
+
 void setup() {
   Serial.begin(115200);   // opens serial port, sets data rate to 9600 bps
   
