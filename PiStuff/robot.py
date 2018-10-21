@@ -30,26 +30,24 @@ class Robot:
 
         print "Robot initialization"
 
-    def update(self, rmap, dist, lsound, rsound):
+    def execute_queue(self):
+        lr = self.movequeue.pop()
+        self.lmotor = lr[0]
+        self.rmotor = lr[1]
+        return
+
+    def wall_react(self):
+        for i in range(0,15):
+            self.movequeue.insert(0,(-150, -150))
+
+        for i in range(0,5):
+            self.movequeue.insert(0,(230, -230))
+
+    def navigate(self):
+         self.lmotor = 220
+         self.rmotor = 220
 
 
-
-        if len(self.movequeue) != 0:
-            lr = self.movequeue.pop()
-            self.lmotor = lr[0]
-            self.rmotor = lr[1]
-            return
-
-        if (dist < 20):
-            for i in range(0,15):
-                self.movequeue.insert(0,(-150, -150))
-
-            for i in range(0,5):
-                self.movequeue.insert(0,(230, -230))
-
-        else:
-            self.change_angle = findEnemy(frame)
-            self.calculate_motors()
 
     def calculate_motors(self):
         # Tolerance makes sure the robot will not adjust for minor diff
@@ -65,4 +63,5 @@ class Robot:
             # Go straight
             self.lmotor = 200
             self.rmotor = 200
+
 
