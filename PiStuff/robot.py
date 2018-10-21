@@ -40,13 +40,12 @@ class Robot:
         for i in range(0,15):
             self.movequeue.insert(0,(-150, -150))
 
-        for i in range(0,5):
-            self.movequeue.insert(0,(230, -230))
+        for i in range(0,6):
+            self.movequeue.insert(0,(210, -210))
 
     def navigate(self):
-         self.lmotor = 220
-         self.rmotor = 220
-
+         self.lmotor = 135
+         self.rmotor = 135
 
 
     def calculate_motors(self):

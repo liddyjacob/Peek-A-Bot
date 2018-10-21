@@ -14,6 +14,7 @@ class RMap:
                 print i, j
 
     def create_wall(self, pos, angle, dist):
+
         pass
         #print pos
         #print angle
