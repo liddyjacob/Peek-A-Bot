@@ -21,35 +21,48 @@ Counter clockwise: Left is up
 
 class Robot:
     def __init__(self):
-        self.lmotorpwr = 0 # Max 255 power
-        self.rmotorpwr = 0 # Max 255 power
+        self.lmotor = 0 # Max 255 power
+        self.rmotor = 0 # Max 255 power
         self.pos = (0.0, 0.0)
         self.angle = 0.0
-        self.angle_goal = 0.0
+        self.change_angle = 0.0
+        self.movequeue = []
 
         print "Robot initialization"
 
-    def update(self, rmap, dist, frame):
-        if (dist < 10):
-            self.lmotorpower = -50
-            self.rmotorpower = -50
-            print("WOAH! Back up boi!")
+    def update(self, rmap, dist, lsound, rsound):
+
+
+
+        if len(self.movequeue) != 0:
+            lr = self.movequeue.pop()
+            self.lmotor = lr[0]
+            self.rmotor = lr[1]
+            return
+
+        if (dist < 20):
+            for i in range(0,15):
+                self.movequeue.insert(0,(-150, -150))
+
+            for i in range(0,5):
+                self.movequeue.insert(0,(230, -230))
 
         else:
-            diffangle = findEnemy(frame)
-            self.angle_goal = diffangle + self.angle
+            self.change_angle = findEnemy(frame)
             self.calculate_motors()
 
     def calculate_motors(self):
         # Tolerance makes sure the robot will not adjust for minor diff
-        if ((self.angle_goal + TOLERANCE) % 360) > (self.angle % 360 ):
+        if self.change_angle > TOLERANCE:
             # Go left:
-            self.lmotor = 255
-            self.rmotor = -255
-        elif ((self.angle_goal - TOLERANCE) % 360)  <  (self.angle % 360):
-            # Go right:
             self.lmotor = -255
             self.rmotor = 255
+        elif self.change_angle < -TOLERANCE:
+            # Go right:
+            self.lmotor = 255
+            self.rmotor = -255
         else:
-            self.lmotor = 128
-            self.rmotor = 128
+            # Go straight
+            self.lmotor = 200
+            self.rmotor = 200
+

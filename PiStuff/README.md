@@ -10,5 +10,8 @@ This module requires the following:
 * 470 Resistor
 * 320 Resistor
 * OpenCV - See link
+* Screem
 
+Do a 
+'sudo screen /dev/ttyACM0'
 
